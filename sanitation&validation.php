@@ -11,6 +11,7 @@
         <input type="text" name="username"></br>
         <label for="">Age</label>
         <input type="text" name="age"></br>
+        <label>Email</label>
         <input type="text" name="email"></br>
         <input type="submit" name="login" value="login">
     </form>
@@ -25,7 +26,9 @@ if(isset($_POST["login"])){
     $username = filter_input(INPUT_POST/* GET*/, "username", FILTER_SANITIZE_SPECIAL_CHARS);// FILTERS MALICIOS KEY TO PREVENT HACKING TO NOT EXECUTE HIS CODE
     $age = filter_input(INPUT_POST/* GET*/, "age", FILTER_SANITIZE_NUMBER_INT);// filter and detect only number and remove other letter or special character
     $email = filter_input(INPUT_POST/* GET*/, "email", FILTER_SANITIZE_EMAIL);// filter any special character in email
-
+     $age = filter_input(INPUT_POST/* GET*/, "age", FILTER_VALIDATE_INT);
+     $email = filter_input(INPUT_POST/* GET*/, "email", FILTER_VALIDATE_EMAIL);
+    
 // $username = $_POST["username"];
 
 echo "Hello {$username}<br>";
