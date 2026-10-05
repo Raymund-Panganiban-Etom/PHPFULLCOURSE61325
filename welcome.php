@@ -1,10 +1,10 @@
 <?php
 
 // session_start();
-// echo "WELCOME " . $_SESSION['UserFSDFA'] . "<br>";
+// echo "WELCOME " . $_SESSION['username'] . "<br>";
 
 session_start();
-echo "WELCOME " . $_SESSION['USER'] . "<br>";
+echo "WELCOME " . $_SESSION['Username'] . "<br>";
 
  ?>
 
@@ -23,20 +23,17 @@ echo "WELCOME " . $_SESSION['USER'] . "<br>";
  </body>
 </html> -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Welcome</title>
 </head>
 <body>
-    
-<form action="welcome.php" method="post">
+ <form action="welcome.php" method="post">
     <input type="submit" value="Logout" name="Logout">
-</form>
-
+ </form>
 </body>
 </html>
 
@@ -61,7 +58,7 @@ echo "WELCOME " . $_SESSION['USER'] . "<br>";
 
 if(isset($_POST['Logout'])){
     session_destroy();
-    header("Location: login.php");
+    header("Location: Login.php");
 }
 
 ?>
