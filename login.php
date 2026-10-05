@@ -10,36 +10,36 @@
     <body>
         <form action="login.php" method="post">
             <label for="user">Username</label><br>
-            <input type="text" id="user" placeholder="Juan_123" name="Users"><br>
+            <input type="text" id="user" placeholder="Juan_123" name="User"><br>
             <label for="pass">Password</label><br>
             <input type="password" placeholder="*******" name="Pass"><br>
             <input type="submit" value="Login" name="Login"><br>
         </form><br>
         <p>Have not an account? <a href="reg.php">Register</a></p>
+        <p>go to YouTube: <a href="youtube.com">YT</a></p>
+        <p><a href=""></a></p>
     </body>
     </html> -->
 
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>login</title>
+    </head>
+    <body>
+        <form action="login.php" method="post">
+            <label for="User">Username</label><br>
+            <input type="text" id="User" placeholder = "Juan_123" name="User"><br>
+            <label for="Pass">Password</label><br>
+            <input type="password" id="Pass" name="Pass"><br>
+            <input type="submit" value="Login" name="Login"></form>
+        <p>Have not an account? <a href="reg.php">Register</a></p>
+    </body>
+    </html>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    
-<form action="login.php" method="post">
-    <label for="Use">Username</label><br>
-    <input type="text" id="Use" placeholder="Juan_123" name="User"><br>
-    <label for="Pass">Password</label><br>
-    <input type="password" id="Pass" name="Pass"><br>
-    <input type="submit" value="Login" name="Login"><br>
-</form>
-<p>Have not an account? <a href="reg.php">Register</a></p>
 
-</body>
-</html>
 
 
     <?php
@@ -74,7 +74,7 @@
 // include("db.php");
 
 // if(isset($_POST['Login'])){
-//     $user = $_POST['Users'];
+//     $user = $_POST['User'];
 //     $pass = $_POST['Pass'];
 
 //     if(empty($user) || empty($pass)){
@@ -108,37 +108,33 @@
 // }
 
 include("db.php");
-
 if(isset($_POST['Login'])){
-    $username = $_POST['User'];
-    $password = $_POST['Pass'];
-    if(empty($username) || empty($password)){
+     $username = $_POST['User'];
+     $password = $_POST['Pass'];
+     if(empty($username) || empty($password)){
         echo "Please fill Username and Password";
-    }else{
-
-    $stmt = $connect->prepare("SELECT * FROM practice WHERE User = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result= $stmt->get_result();
-
-    if($result->num_rows > 0){
-        
-    $row = $result->fetch_assoc();
-    if(password_verify($password, $row['Pass'])){
-        session_start();
-        $_SESSION['USER'] = $username;
-        header("Location: welcome.php");
-        exit();
-    }else{
-        echo "Wrong Password";
-    }
-    }else {
-        echo "Wrong Username";
-    }
-
-
-    }
+     }else{
+        $stmt = $connect->prepare("SELECT * FROM practice WHERE User = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            if(password_verify ($password, $row['Pass'])){
+                session_start();
+                $_SESSION['Username'] = $username;
+                header("Location: welcome.php");
+                exit();
+            }else{
+                echo "Invalid Password";
+            }
+        }else{
+            echo "Invalid Username";
+        }
+     }
 }
+
+
 
 
 ?>
