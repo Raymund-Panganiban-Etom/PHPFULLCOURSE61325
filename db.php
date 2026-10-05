@@ -22,9 +22,9 @@ $db_name = "test";
 
 try{
     $connect = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
-    echo "Connected";
-}catch(mysqli_sql_exception){
-    echo " Not Connected";
+    echo "Connected<br>";
+}catch(mysqli_sql_exception $e){
+    echo "Not Connected: " . $e->getMessage() . "<br>";
 }
 
 
